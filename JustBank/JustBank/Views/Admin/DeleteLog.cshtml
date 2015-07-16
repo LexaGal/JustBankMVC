@@ -1,0 +1,18 @@
+﻿@model BankModel.Entities.Operations.Operation
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete?</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+        <div>
+            <input type="submit" value="Delete"/>
+        </div>
+        @Html.ActionLink("<-- Back", "OperationsLog", "Admin")
+}

@@ -1,0 +1,83 @@
+﻿@using System.Web.Mvc.Html
+@model BankModel.Entities.Client
+
+@{
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+
+@{
+    ViewBag.FirstName = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend>Movie</legend>
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.Id)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SecondName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SecondName)
+            @Html.ValidationMessageFor(model => model.SecondName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.AccountType, new SelectList(new List<Object> {"Usual", "Premium"}))
+            @Html.ValidationMessageFor(model => model.AccountType)
+        </div>
+
+        @{
+            Session["state"] = Model.State;
+        }
+@*        @Html.HiddenFor(model => model.State.BankId)
+        @Html.HiddenFor(model => model.State.CardId)
+        @Html.HiddenFor(model => model.State.BankMoney)
+        @Html.HiddenFor(model => model.State.BankProcents)
+        @Html.HiddenFor(model => model.State.CardMoney)
+        @Html.HiddenFor(model => model.State.CreditMoney)
+        @Html.HiddenFor(model => model.State.CreditProcents)
+        @Html.HiddenFor(model => model.State.PinCode)*@
+        <p>
+            <input type="submit" value="Edit" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div>
+    @Html.ActionLink("<-- Back", "Index")
+</div>
+

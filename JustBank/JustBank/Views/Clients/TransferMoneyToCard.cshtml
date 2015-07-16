@@ -1,0 +1,30 @@
+﻿@model BankModel.Entities.Client
+
+@{
+    ViewBag.Title = "TransferMoneyToCard";
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+
+<h2>Transfer money to Card</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend></legend>
+
+        <div>Bank Id: @Html.Editor("BankId") </div>
+        <div>Card Id: @Html.Editor("CardId")</div>
+        <div>Sum: @Html.Editor("Sum")</div>
+
+        <div><input type="submit" value="Transfer"/></div>
+        <div>@ViewBag.Result</div>
+     
+    </fieldset>
+}
+
+@Html.ActionLink("<-- Back", "Operations", "Clients")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

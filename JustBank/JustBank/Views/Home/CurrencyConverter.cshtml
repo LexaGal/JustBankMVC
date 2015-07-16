@@ -1,0 +1,52 @@
+﻿@using BankModel.Entities.Operations
+
+@{
+    ViewBag.Title = "CurrencyConvertor";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+
+@{
+    List<Object> items = new List<object>(Convertation.Currencies.ToList());
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend>Put</legend>
+
+        <table>
+            <tr>
+            <th>
+                @Html.Label("Convert from:")
+            </th>
+            <th>
+                @Html.DropDownList("ConvertFrom", new SelectList(items))
+            </th>
+            <th>
+                @InputExtensions.TextBox(Html, "SumFrom", ViewBag.SumFrom)
+            </th>
+                <th>
+                    @{
+                        const string str = "->"; 
+                    }
+                    <input type="submit" value="@str"/>
+                </th>
+            <th>
+                @Html.Label("Convert to:")
+            </th>
+            <th>
+                @Html.DropDownList("ConvertTo", new SelectList(items))
+            </th>
+            <th>
+                @InputExtensions.TextBox(Html, "SumTo", ViewBag.SumTo)
+            </th>
+            </tr>
+        </table>
+        
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,89 @@
+﻿@model BankModel.Entities.Client
+
+@{
+    Layout = "~/Views/Clients/_Layout.cshtml";
+    ViewBag.FirstName = "Index";
+}
+
+<table>
+    <tr>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.SecondName)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.AccountType)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.State.BankId)
+        </th>
+        
+        <th class="border">
+            @Html.DisplayNameFor(model => model.State.BankMoney)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.State.BankProcents)
+        </th>
+       <th class="border">
+            @Html.DisplayNameFor(model => model.State.CardId)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.State.PinCode)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.State.CardMoney)
+        </th>
+    </tr>
+    <tr>
+        <td class="border">
+            @Html.DisplayFor(model => model.FirstName)
+        </td>
+        <td class="border">
+            @Html.DisplayFor(model => model.SecondName)
+        </td>
+        <td class="border">
+            @Html.DisplayFor(model => model.Email)
+        </td>
+        <td class="border">
+            @Html.DisplayFor(model => model.Password)
+        </td>
+        <td class="border">
+            @Html.DisplayFor(model => model.AccountType)
+        </td>
+        <td class="border">
+            @Html.DisplayFor(model => model.State.BankId)
+        </td>
+        
+        <td class="border">
+            @Html.DisplayFor(model => model.State.BankMoney)
+        </td>
+        
+        <td class="border">
+            @Html.DisplayFor(model => model.State.BankProcents)
+        </td>
+        <td class="border">
+            @Html.DisplayFor(model => model.State.CardId)
+        </td>
+        <td class="border">
+            @Html.DisplayFor(model => model.State.PinCode)
+        </td>
+        <td class="border">
+            @Html.DisplayFor(model => model.State.CardMoney)
+        </td>
+        <td class="border">
+            @Html.ActionLink("Edit", "Edit", new {id = Model.Id})
+        </td>
+        <td class="border">
+            @Html.ActionLink("Delete", "DeleteClient", new {id = Model.Id})
+        </td>
+    </tr>
+</table>        
+ 

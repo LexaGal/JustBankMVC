@@ -1,0 +1,20 @@
+﻿@model BankModel.Entities.Credits.Credit
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<h2>Delete credit</h2>
+
+<h3>Are you sure you want to delete?</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <input type="submit" value="Delete"/>
+    </div>
+       @Html.ActionLink("<-- Back", "CreditsInfo", new {id = Model.ClientId})
+    
+}

@@ -1,0 +1,28 @@
+﻿@model BankModel.Entities.Client
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+    
+}
+
+<h2>@Html.ActionLink("<--", "Index") Update</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.RadioButton("Update", "BankMoney", true) Update bank money
+    </div>
+    <div>
+        @Html.RadioButton("Update", "CreditsMoney", false) Update money of all credits
+    </div>
+
+    <div>
+        @Html.Hidden("Id", Model.Id)
+        <input type="submit" value="Update"/>
+    </div>
+}
+
+
+

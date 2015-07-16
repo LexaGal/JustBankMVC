@@ -1,0 +1,44 @@
+﻿@using JustBank.Content.Ajax
+@model JustBank.Models.ListViewModel<BankModel.Entities.Operations.Operation>
+
+@{
+    ViewBag.Title = "OperationsLog";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+    AjaxOptions ajaxOpts = AjaxOptionsSetter.Set("table", Url.Action("ShowOperations",
+        new {filter = Model.Filter ?? "Date",
+             id = !Model.List.Any() ? -1 : Model.List.First().ClientId}));
+}
+
+<h2>@Html.ActionLink("<--", "Index") Operations log</h2>
+
+@using (Ajax.BeginForm(ajaxOpts))
+{
+   <div>
+        Sort by: @Html.DropDownList("SortBy", new SelectList(new List<Object>
+                 {
+                     "Date", "Type", "BankId", "Money"
+                 },
+                 Model.Filter ?? "Date"))
+
+       <input type="submit" value="Sort"/>
+    </div>
+
+    <div>
+        @Html.RadioButton("Load", "Xml", true) Xml
+        @Html.RadioButton("Load", "Json", false) Json
+    </div>
+    
+    <div>
+        File: @Html.TextBox("File")
+        Download: @Html.CheckBox("LoadFile", false)      
+    </div>
+}
+
+<div id="loading" class="load" style="display: none">
+    <p>Loading data...</p>
+</div>
+
+<div id="table">
+    @Html.Action("ShowOperations", new {filter = Model.Filter ?? "Date",
+        id = !Model.List.Any() ? -1 : Model.List.First().ClientId })
+</div>

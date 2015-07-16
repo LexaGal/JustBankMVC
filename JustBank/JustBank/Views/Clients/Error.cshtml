@@ -1,0 +1,35 @@
+﻿@using BankModel.Entities
+@using JustBank.SessionInfo
+@model BankModel.Entities.Errors.ErrorNotifier
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+<style type="text/css">.display-label { }</style>
+
+<h2>Error</h2>
+
+    <div>
+         @Html.Label("Message: ")
+    </div>
+    <div>
+         @Model.Message
+    </div>
+
+    <div>
+         @Html.Label("Description: ")
+    </div>
+    <div>
+        @Model.Description
+        @{
+            if (Model.ActionLink != null)
+            {
+                const string str = "or choose other";
+                @Html.ActionLink(Model.ActionLink.Item1, Model.ActionLink.Item2.Split('/').Last(),
+                Model.ActionLink.Item2 == "/Clients/PayCredit" ? null : new {id = LogInInfo.LoggedInClient().Id})
+                @str
+                @Html.ActionLink("Operations", "Operations")
+            }
+        }
+   </div>

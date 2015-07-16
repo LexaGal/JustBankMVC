@@ -1,0 +1,10 @@
+C:\Users\Alex\Documents\JustBank\BankModel\obj\Debug\BankModel.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Documents\JustBank\BankModel\bin\Debug\BankModel.dll
+C:\Users\Alex\Documents\JustBank\BankModel\bin\Debug\BankModel.pdb
+C:\Users\Alex\Documents\JustBank\BankModel\bin\Debug\EntityFramework.dll
+C:\Users\Alex\Documents\JustBank\BankModel\bin\Debug\EntityFramework.xml
+C:\Users\Alex\Documents\JustBank\BankModel\obj\Debug\BankModel.dll
+C:\Users\Alex\Documents\JustBank\BankModel\obj\Debug\BankModel.pdb
+C:\Users\Alex\Documents\JustBank\BankModel\bin\Debug\BankModel.dll.config
+C:\Users\Alex\Documents\JustBank\BankModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alex\Documents\JustBank\BankModel\bin\Debug\EntityFramework.SqlServer.xml

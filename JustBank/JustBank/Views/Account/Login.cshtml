@@ -1,0 +1,29 @@
+﻿@model JustBank.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<section id="loginForm">
+<h2>Use a local account to log in.</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.ValidationSummary(true)
+  @Html.EditorForModel()
+  <p><input type="submit" value="Log in" /></p>
+}
+
+@Html.ActionLink("Register", "CreateNew", "Clients") if you don't have an account.
+</section>
+
+<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @*@Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })*@
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,79 @@
+﻿@using BankModel.Entities
+@using JustBank.SessionInfo
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title JustBank </title>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/Content/Admin.css"/>
+        <link rel="stylesheet" href="~/Content/Site.css"/> 
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("JustBank", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <nav>
+                        <ul id="menu">
+                            @{
+                                Client client = LogInInfo.LoggedInClient();
+                            }
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                            <li>@if (client == null)
+                                {
+                                    @Html.ActionLink("Register", "CreateNew", "Clients")
+                                }
+                                @if (client != null)
+                                {
+                                    @Html.ActionLink("Operations", "Operations", "Clients")
+                                }
+                            </li>
+
+                            <li>@if (client != null)
+                                {
+                                    @Html.ActionLink("My info", "Index", "Clients")
+                                }
+                                @if (client == null)
+                                {
+                                    @Html.ActionLink("About", "About", "Home")
+                                }
+                            </li>
+
+                            <li>@if (client == null)
+                                {
+                                    @Html.ActionLink("Log in", "Login", "Account")
+                                }
+                                @if (client != null)
+                                {
+                                    @Html.ActionLink("Log out", "LogOff", "Account")
+                                }
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - JustBank</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

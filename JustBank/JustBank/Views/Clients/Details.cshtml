@@ -1,0 +1,55 @@
+﻿@model BankModel.Entities.Client
+
+@{
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Movie</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+         @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SecondName)
+         @Html.DisplayFor(model => model.SecondName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+         @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Password)
+         @Html.DisplayFor(model => model.Password)
+    </div>
+
+        <div class="display-label">
+         @Html.DisplayNameFor(model => model.AccountType)
+        @Html.DisplayFor(model => model.AccountType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.State.PinCode)
+            @Html.DisplayFor(model => model.State.PinCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.State.CardId)
+           @Html.DisplayFor(model => model.State.CardId)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) 
+    @Html.ActionLink("Back", "Index", Model)
+</p>

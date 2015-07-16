@@ -1,0 +1,50 @@
+﻿@using System.Web.Mvc.Html
+@using BankModel.Entities.Credits
+@model JustBank.Models.ListViewModel<BankModel.Entities.Credits.Credit>
+
+@{
+    ViewBag.Title = "TakeCredit";
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+
+<h2>Take credit</h2>
+
+<table>
+    <tr>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Type)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Procents)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Period)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.List)
+    {
+        <tr>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Procents)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Period)
+            </td>
+            <td class="border">
+            @{
+                @Html.ActionLink("Take", "ShowCredit", new {type = item.Type})
+            }
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("<-- Back", "Operations", "Clients")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

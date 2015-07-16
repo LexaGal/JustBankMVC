@@ -1,0 +1,104 @@
+﻿@model JustBank.Models.ListViewModel<BankModel.Entities.Client>
+<div class="message-success">
+    @ViewBag.IsLoaded
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Id)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().FirstName)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().SecondName)
+        </th>
+        <th class="border">
+        @Html.DisplayNameFor(model => model.List.First().Email)
+        /th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Password)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().AccountType)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.BankId)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.BankMoney)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.BankProcents)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.CardId)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.PinCode)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.CardMoney)
+        </th>
+    </tr>
+    </thead>
+    @foreach (var item in Model.List)
+    {
+        <tr>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.SecondName)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.AccountType)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.BankId)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.BankMoney)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.BankProcents)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.CardId)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.PinCode)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.CardMoney)
+            </td>
+            <td class="border">
+                @Html.ActionLink("Delete", "DeleteClient", new {id = item.Id})
+            </td>
+            <td class="border">
+                @Html.ActionLink("Update", "Update", new {id = item.Id})
+            </td>
+            <td class="border">
+                @Html.ActionLink("Credits", "CreditsInfo", new {id = item.Id})
+            </td>
+            <td class="border">
+                @Html.ActionLink("Operations", "OperationsLog", new {id = item.Id})
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="pager">
+      @Model.PagesString
+</div>

@@ -1,0 +1,46 @@
+﻿@using System.Web.Mvc.Html
+@using JustBank.Content.Ajax
+@using JustBank.HtmlHelpers
+@model JustBank.Models.ListViewModel<BankModel.Entities.Client>
+@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    AjaxOptions ajaxOpts = AjaxOptionsSetter.Set("table", Url.Action("ShowClients"));
+}
+
+<h2>Clients</h2>
+
+@using (Ajax.BeginForm(ajaxOpts))
+{
+    <div>
+        Sort by: @Html.DropDownList("SortBy", new SelectList(new List<Object>
+                 {
+                     "FirstName", "SecondName", "AccountType", "BankMoney"
+                 },
+                 Model.Filter ?? "FirstName"))
+        <input type="submit" value="Sort"/>
+    </div>
+
+    <div>
+        @Html.RadioButton("Load", "Xml", true) Xml
+        @Html.RadioButton("Load", "Json", false) Json
+    </div>
+    <div>
+        File: @Html.TextBox("File")
+        Download: @Html.CheckBox("LoadFile", false)
+    </div>
+}
+
+<div id="loading" class="load" style="display: none">
+    <p>Loading data...</p>
+</div>
+
+<div id="table">
+    @Html.Action("ShowClients", new {filter = Model.Filter ?? "FirstName"})
+</div>
+
+<p>
+    @Html.ActionLink("Add new client", "Create", "Admin")
+    @Html.ActionLink("Search", "Search", "Admin")
+</p>
+

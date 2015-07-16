@@ -1,0 +1,64 @@
+﻿@model JustBank.Models.ListViewModel<BankModel.Entities.Credits.Credit>
+<div class="message-success">
+    @ViewBag.IsLoaded
+</div>
+<div class="message-error">
+    @ViewBag.Error
+</div>
+
+<table>
+
+@if (Model.List.Any())
+{
+    <tr>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().DateTime)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().ClientId)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Type)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Procents)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Money)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Period)
+        </th>
+        </tr>
+
+    foreach (var item in Model.List)
+    {
+        <tr>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.ClientId)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Procents)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Money)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Period)
+            </td>
+            <td class="border">
+                @Html.ActionLink("Delete", "DeleteCredit", new {item.Id})
+            </td>
+        </tr>
+    }
+}
+</table>
+<div class="pager">
+      @Model.PagesString
+</div>

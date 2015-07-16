@@ -1,0 +1,134 @@
+﻿@using JustBank.HtmlHelpers
+@model JustBank.Models.ListViewModel<BankModel.Entities.Client>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<h2>@Html.ActionLink("<--", "Index") Search</h2>
+
+@using (Html.BeginForm("Search", "Admin"))
+{
+    <div class="editor-field">
+        Name: @Html.TextBox("Name", Model.Filter.Split(',')[0] ?? "")
+        Surname: @Html.DropDownList("Surname", String.IsNullOrEmpty(Model.Filter.Split(',')[1])
+                     ? "" : Model.Filter.Split(',')[1])
+        <input type="submit" value="Filter"/>
+    </div>
+<div class="message-error">
+    @ViewBag.Error
+</div>
+}
+
+
+
+<table>
+
+@if (Model.List.Any())   
+{
+    <tr>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Id)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().FirstName)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().SecondName)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Email)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().Password)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().AccountType)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.BankId)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.BankMoney)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.BankProcents)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.CardId)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.PinCode)
+        </th>
+        <th class="border">
+            @Html.DisplayNameFor(model => model.List.First().State.CardMoney)
+        </th>
+        
+        <th></th>
+    </tr>
+
+    foreach (var item in Model.List)
+    {
+        <tr>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.SecondName)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.AccountType)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.BankId)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.BankMoney)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.BankProcents)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.CardId)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.PinCode)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.State.CardMoney)
+            </td>
+            <td class="border">
+                @Html.ActionLink("Delete", "DeleteClient", new {id = item.Id})
+            </td>
+            <td class="border">
+                @Html.ActionLink("Update", "Update", new {id = item.Id})
+            </td>
+            <td class="border">
+                @Html.ActionLink("Credits", "CreditsInfo", new {id = item.Id})
+            </td>
+            <td class="border">
+                @Html.ActionLink("Operations", "OperationsLog", new {id = item.Id})
+            </td>
+        </tr>
+     }
+}
+</table>
+
+<p>
+    @Html.ActionLink("Add new client", "Create", "Admin")
+</p>
+
+<div class="pager">
+      @Html.PageLinks(Model.PagingInfo, x => Url.Action("Search",
+        new {filter = Model.Filter, page = x}))
+</div>

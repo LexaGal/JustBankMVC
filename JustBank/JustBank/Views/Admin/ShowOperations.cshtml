@@ -1,0 +1,77 @@
+﻿@model JustBank.Models.ListViewModel<BankModel.Entities.Operations.Operation>
+<div class="message-success">
+        @ViewBag.IsLoaded
+</div>
+<div class="message-error">
+    @ViewBag.Error
+</div>
+
+<table>
+
+    @if (Model.List.Any())
+    {
+        <tr>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().DateTime)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().ClientId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().Type)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().SourceBankId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().SourceCardId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().DestinationBankId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().DestinationCardId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().Money)
+            </th>
+        </tr>
+
+        foreach (var item in Model.List)
+        {
+            <tr>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.ClientId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.SourceBankId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.SourceCardId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.DestinationBankId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.DestinationCardId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Money)
+                </td>
+                <td class="border">
+                    @Html.ActionLink("Delete", "DeleteLog", new {item.Id})
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<div class="pager">
+      @Model.PagesString
+</div>

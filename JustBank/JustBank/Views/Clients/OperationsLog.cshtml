@@ -1,0 +1,107 @@
+﻿@using JustBank.HtmlHelpers
+@model JustBank.Models.ListViewModel<BankModel.Entities.Operations.Operation>
+
+@{
+    ViewBag.Title = "OperationsLog";
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+
+<h2>@Html.ActionLink("<--", "Index") Operations log</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div>
+        Sort by: @Html.DropDownList("SortBy", new SelectList(new List<Object>
+                 {
+                     "Type", "Date", "Money"
+                 },
+                 Model.Filter ?? "Date" ))
+        <input type="submit" value="Sort"/>
+    </div>
+
+    <div>
+        @Html.RadioButton("Load", "Xml", true) Xml
+        @Html.RadioButton("Load", "Json", false) Json
+    </div>
+    
+    <div>
+        File: @Html.TextBox("File")
+        Download: @Html.CheckBox("LoadFile", false)       
+        <div class="message-success">
+           @ViewBag.IsLoaded
+        </div>
+        <div class="message-error">
+           @ViewBag.Error
+        </div>
+ 
+    </div>
+}
+
+<table>
+
+    @if (Model.List.Any())
+    {
+        <tr>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().DateTime)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().ClientId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().Type)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().SourceBankId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().SourceCardId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().DestinationBankId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().DestinationCardId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().Money)
+            </th>
+        </tr>
+
+        foreach (var item in Model.List)
+        {
+            <tr>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                  <td class="border">
+                    @Html.DisplayFor(modelItem => item.ClientId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.SourceBankId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.SourceCardId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.DestinationBankId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.DestinationCardId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Money)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<div class="pager">
+      @Html.PageLinks(Model.PagingInfo, x => Url.Action("OperationsLog",
+        new {filter = Model.Filter, page = x}))
+</div>

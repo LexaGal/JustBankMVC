@@ -1,0 +1,61 @@
+﻿@model JustBank.Models.ListViewModel<BankModel.Entities.Credits.Credit>
+@{
+    ViewBag.Title = "PayCredit";
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+
+<h2>Pay credit</h2>
+
+<table>
+    @if (Model.List.Any())
+    {
+        <tr>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().DateTime)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().Type)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().Procents)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().Money)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.List.First().Period)
+            </th>
+
+        </tr>
+
+        foreach (var item in Model.List)
+        {
+            <tr>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Procents)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Money)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Period)
+                </td>
+                <td class="border">
+                    @Html.ActionLink("Pay", "CreditInfo", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+@Html.ActionLink("<-- Back", "Operations", "Clients")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

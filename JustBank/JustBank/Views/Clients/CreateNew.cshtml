@@ -1,0 +1,72 @@
+﻿@using System.Configuration
+@using JustBank.SessionInfo
+@model BankModel.Entities.Client
+
+@{
+    ViewBag.Title = "CreateNew";
+    if (LogInInfo.LoggedInClient() != null)
+    {
+        Layout = LogInInfo.LoggedInClient().FirstName != "a" 
+            ? "~/Views/Home/_Layout.cshtml" : "~/Views/Admin/_Layout.cshtml";
+    }
+}
+
+<h2>Registration</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend>Client</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SecondName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SecondName)
+            @Html.ValidationMessageFor(model => model.SecondName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.AccountType, new SelectList(new List<Object>{ "Usual", "Premium"}))
+            @Html.ValidationMessageFor(model => model.AccountType)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.State.BankMoney)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.State.BankMoney)
+            @Html.ValidationMessageFor(model => model.State.BankMoney)
+        </div>
+        <p>
+            <input type="submit" value="Create"/>
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

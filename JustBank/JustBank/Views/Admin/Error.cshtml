@@ -1,0 +1,22 @@
+﻿@model BankModel.Entities.Errors.ErrorNotifier
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<h2>Error</h2>
+
+    <div class="display-label">
+         @Html.Label("Message: ")
+    </div>
+    <div class="display-field">
+         @Model.Message
+    </div>
+
+    <div class="display-label">
+        @Html.Label("Description: ")
+    </div>
+    <div class="display-field">
+         @Model.Description
+    </div>

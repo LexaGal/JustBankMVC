@@ -1,0 +1,20 @@
+﻿@model BankModel.Entities.Client
+
+@{
+    ViewBag.Title = "Operations";
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+
+<h2>@Html.ActionLink("<--", "Index") Operations</h2>
+
+<ol>
+    <li><div>@Html.ActionLink("Put money", "PutMoney")</div></li>
+    <li><div>@Html.ActionLink("Transfer money to Card", "TransferMoneyToCard")</div></li>
+    <li><div>@Html.ActionLink("Transfer money from Card", "TransferMoneyFromCard")</div></li>
+    <li><div>@Html.ActionLink("Transfer money from BankId to BankId", "TransferMoneyFromBankIdToBankId")</div></li>
+    <li><div>@Html.ActionLink("Take credit", "TakeCredit")</div></li>
+    <li><div>@Html.ActionLink("Pay credit", "PayCredit")</div></li>
+</ol>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

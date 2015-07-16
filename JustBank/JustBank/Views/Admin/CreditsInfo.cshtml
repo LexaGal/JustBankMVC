@@ -1,0 +1,44 @@
+﻿@using JustBank.Content.Ajax
+@using JustBank.HtmlHelpers
+@model JustBank.Models.ListViewModel<BankModel.Entities.Credits.Credit>
+
+@{
+    ViewBag.Title = "CreditsInfo";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+    AjaxOptions ajaxOpts = AjaxOptionsSetter.Set("table", Url.Action("ShowCredits",
+        new {filter = Model.Filter ?? "Date",
+             id = !Model.List.Any() ? -1 : Model.List.First().ClientId}));
+}
+
+<h2>@Html.ActionLink("<--", "Index") Credits info</h2>
+
+@using (Ajax.BeginForm(ajaxOpts))
+{
+    <div>
+        Sort by: @Html.DropDownList("SortBy", new SelectList(new List<Object>
+                 {
+                     "Date", "Type", "ClientId", "Money", "Period"
+                 },
+                     Model.Filter ?? "Date"))
+        <input type="submit" value="Sort"/>
+    </div>
+
+    <div>
+        @Html.RadioButton("Load", "Xml", true) Xml
+        @Html.RadioButton("Load", "Json", false) Json
+    </div>
+
+    <div>
+        File: @Html.TextBox("File")
+        Download: @Html.CheckBox("LoadFile", false)
+    </div>
+}
+
+<div id="loading" class="load" style="display: none">
+    <p>Loading data...</p>
+</div>
+
+<div id="table">
+    @Html.Action("ShowCredits", new {filter = Model.Filter ?? "Date",
+        id = !Model.List.Any() ? -1 : Model.List.First().ClientId })
+</div>

@@ -1,0 +1,29 @@
+﻿@model BankModel.Entities.Credits.Credit
+
+@{
+    ViewBag.Title = "ShowCredit";
+    Layout = "~/Views/Clients/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to take credit for @Model.Type paying till @Model.Period under @Model.Procents%?</h3>
+
+@using (Html.BeginForm()) {
+   @Html.AntiForgeryToken()
+    <fieldset>
+        <legend></legend>
+        <div>
+            Bank Id: @Html.Editor("BankId")
+            Sum : @Html.DropDownList("Sum", new SelectList(new List<Object>
+                  {"1000", "2000", "5000", "10000", "20000", "50000", "100000"}))
+        </div>
+        
+        <input type="submit" value="Take"/>
+
+        <div>@ViewBag.Result</div>
+
+        <div>
+            @Html.ActionLink("<--Back", "TakeCredit")
+        </div>
+    
+    </fieldset>
+}
